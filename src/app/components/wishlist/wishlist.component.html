@@ -1,0 +1,47 @@
+@if (btn) {
+<section class="bg-main-light rounded-4 shadow w-75 mx-auto p-2">
+  <h2 class="text-center">My wishlist</h2>
+
+  <div class="container">
+    @for (item of WishData ; track item._id) {
+    <div class="row mb-2 border-bottom">
+      <div class="col-md-2">
+        <img
+          [src]="item.imageCover"
+          class="w-100 rounded-4"
+          [alt]="item.title"
+        />
+      </div>
+      <div class="col-md-10">
+        <div class="d-flex justify-content-between align-items-center">
+          <div
+            class="d-flex flex-column justify-content-around align-items-start"
+          >
+            <h5 class="my-4">{{ item.title }}</h5>
+            <p class="text-main my-4">{{ item.price | currency }}</p>
+            <span
+              class="text-danger cursor-pointer my-4"
+              (click)="DeleteItem(item._id)"
+              ><i class="fa-solid fa-trash fa-1x"> Remove</i></span
+            >
+          </div>
+        </div>
+        <div class="my-2">
+          <button
+            (click)="AddThisProductToCart(item._id)"
+            class="btn btn-main rounded-4 d-block mx-auto"
+          >
+            Add to Cart +
+          </button>
+        </div>
+      </div>
+    </div>
+
+    }
+  </div>
+</section>
+} @else {
+<section class="bg-main-light rounded-4 shadow w-50 mx-auto p-2 text-center">
+  <h2 class="text-center">wishlist is empty</h2>
+</section>
+}

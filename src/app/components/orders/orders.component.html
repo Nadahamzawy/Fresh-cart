@@ -1,0 +1,88 @@
+<section class="w-100">
+  <form [formGroup]="orderInfo" (ngSubmit)="SubmitOrder()">
+    <div class="my-5">
+      <label for="details">Details:</label>
+      <input
+        type="text"
+        id="details"
+        class="form-control"
+        formControlName="details"
+        [ngClass]="{
+          'is-invalid':
+            orderInfo.get('details')?.getError('required') &&
+            (orderInfo.get('details')?.touched ||
+              orderInfo.get('details')?.dirty),
+          'is-valid':
+            orderInfo.get('details')?.valid &&
+            (orderInfo.get('details')?.touched ||
+              orderInfo.get('details')?.dirty)
+        }"
+      />
+      @if (orderInfo.get('details')?.getError('required') &&
+      (orderInfo.get('details')?.touched||orderInfo.get('details')?.dirty)) {
+      <div class="alert alert-danger w-50">
+        <p class="m-0">Details is required</p>
+      </div>
+      }
+    </div>
+    <div class="my-5">
+      <label for="phone">phone:</label>
+      <input
+        type="tel"
+        id="phone"
+        class="form-control"
+        formControlName="phone"
+        [ngClass]="{
+          'is-invalid':
+            orderInfo.get('phone')?.getError('required') &&
+            (orderInfo.get('phone')?.touched || orderInfo.get('phone')?.dirty),
+          'is-valid':
+            orderInfo.get('phone')?.valid &&
+            (orderInfo.get('phone')?.touched || orderInfo.get('phone')?.dirty)
+        }"
+      />
+      @if (orderInfo.get('phone')?.getError('required') &&
+      (orderInfo.get('phone')?.touched||orderInfo.get('phone')?.dirty)) {
+      <div class="alert alert-danger w-50">
+        <p class="m-0">Phone is required</p>
+      </div>
+      }@else if (orderInfo.get('phone')?.getError('pattern') &&
+      (orderInfo.get("phone")?.touched ||orderInfo.get('phone')?.dirty)) {
+      <div class="alert alert-danger w-50">
+        <p class="m-0">Phone should be in format 01094828982</p>
+      </div>
+      }
+    </div>
+    <div class="my-5">
+      <label for="city">city:</label>
+      <input
+        type="text"
+        id="city"
+        class="form-control"
+        formControlName="city"
+        [ngClass]="{
+          'is-invalid':
+            orderInfo.get('city')?.getError('required') &&
+            (orderInfo.get('city')?.touched || orderInfo.get('city')?.dirty),
+          'is-valid':
+            orderInfo.get('city')?.valid &&
+            (orderInfo.get('city')?.touched || orderInfo.get('city')?.dirty)
+        }"
+      />
+      @if (orderInfo.get('city')?.getError('required') &&
+      (orderInfo.get('city')?.touched||orderInfo.get('city')?.dirty)) {
+      <div class="alert alert-danger w-50">
+        <p class="m-0">City is required</p>
+      </div>
+      }
+    </div>
+    <div class="my-2">
+      <button
+        class="btn-main btn w-100 border-black"
+        [disabled]="orderInfo.invalid"
+      >
+        pay Now
+      </button>
+    </div>
+  </form>
+</section>
